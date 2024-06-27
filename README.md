@@ -1,1 +1,2 @@
 # odoolearn
+added some infogit 
