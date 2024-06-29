@@ -1,21 +1,23 @@
 from odoo import fields, models
 
+
 class HospitalDoctor(models.Model):
 
     _name = 'hospital.doctor'
     _description = 'Hospital patient'
 
-    name = fields.Char(string='Name')
+    name = fields.Char()
 
-    surname = fields.Char(string='Surname')
+    surname = fields.Char()
 
     type = fields.Selection(
         selection=[
             ('cardiologists', 'Cardiologists'),
-            ('sermatologists',' Dermatologists'),
+            ('sermatologists', 'Dermatologists'),
             ('cndocrinologists', 'Endocrinologists'),
-            ('gastroenterologists','Gastroenterologists'),
+            ('gastroenterologists', 'Gastroenterologists'),
             ('physiatrists', 'Physiatrists'),
             ('familyMedicineSpecialists', 'Family medicine specialists'),
         ],
+        string="Doctor type"
     )

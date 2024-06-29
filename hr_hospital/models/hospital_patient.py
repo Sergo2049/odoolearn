@@ -1,23 +1,24 @@
 from odoo import fields, models
 
+
 class HospitalPatient(models.Model):
 
     _name = 'hospital.patient'
 
     _description = 'Hospital patient'
 
-    name = fields.Char(string='Name')
+    name = fields.Char()
 
-    surname = fields.Char(string='Surname')
+    surname = fields.Char()
 
-    date = fields.Date(string='Date')
+    date = fields.Date()
 
-    active = fields.Boolean(default=True)
+    active = fields.Boolean()
 
-    yesterday = fields.Date(string='Yesterday')
+    yesterday = fields.Date()
 
-    qty = fields.Integer(string='Amount')
+    qty = fields.Integer()
 
-    partner_id = fields.Many2one(comodel_name='res.partner')
+    partner_id = fields.Many2one()
 
     image = fields.Image()
