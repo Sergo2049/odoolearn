@@ -10,4 +10,3 @@ class HospitalPatient(models.Model):
     name = fields.Char()
 
     surname = fields.Char()
-
