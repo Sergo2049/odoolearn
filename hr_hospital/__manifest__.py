@@ -13,6 +13,7 @@
     'data': [
         "security/ir.model.access.csv",
         "views/hospital_views.xml",
+        "data/hospital_data.xml"
     ],
     'demo': [
         "demo/hospital_demo.xml",
