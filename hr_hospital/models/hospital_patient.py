@@ -11,14 +11,3 @@ class HospitalPatient(models.Model):
 
     surname = fields.Char()
 
-    date = fields.Date()
-
-    active = fields.Boolean()
-
-    yesterday = fields.Date()
-
-    qty = fields.Integer()
-
-    partner_id = fields.Many2one()
-
-    image = fields.Image()

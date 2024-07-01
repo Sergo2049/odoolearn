@@ -4,7 +4,7 @@ from odoo import fields, models
 class HospitalDoctor(models.Model):
 
     _name = 'hospital.doctor'
-    _description = 'Hospital patient'
+    _description = 'Hospital doctor'
 
     name = fields.Char()
 
@@ -19,5 +19,5 @@ class HospitalDoctor(models.Model):
             ('physiatrists', 'Physiatrists'),
             ('familyMedicineSpecialists', 'Family medicine specialists'),
         ],
-        string="Doctor type"
+        string="Specialization"
     )

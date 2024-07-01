@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
-        <record id="demo_patient_1" model="hospital.patient">
-            <field name="name">John</field>
-            <field name="surname">Doe</field>
-            <field name="active" eval="True"/>
-            <field name="date" eval="DateTime.today().strftime('%Y-%m-%d')"/>
-            <field name="yesterday" eval="DateTime.today().strftime('%Y-%m-%d')"/>
-            <field name="qty" eval="100"/>
-        </record>
+    <record id="demo_patient_1" model="hospital.patient">
+        <field name="name">John</field>
+        <field name="surname">Doe</field>
+    </record>
 
+    <record id="demo_patient_2" model="hospital.patient">
+        <field name="name">Jack</field>
+        <field name="surname">Johns</field>
+    </record>
+
+    <record id="demo_patient_3" model="hospital.patient">
+        <field name="name">Mark</field>
+        <field name="surname">Smith</field>
+    </record>
 </odoo>

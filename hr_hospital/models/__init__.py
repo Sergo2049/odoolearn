@@ -1,1 +1,1 @@
-from . import hospital_patient, hospital_doctor
+from . import hospital_patient, hospital_doctor, hospital_disease, hospital_visit
