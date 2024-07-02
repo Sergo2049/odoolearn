@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!--    Patient-->
+    <!--    Patient-->
     <record id="patient_view_form" model="ir.ui.view">
         <field name="name">hospital.patient.view.form</field>
         <field name="model">hospital.patient</field>
@@ -13,7 +13,7 @@
                     <field name="gender"/>
                 </group>
                 <group>
-                    <field name="image_256" widget="image" class="oe_avatar"></field>
+                    <field name="image_256" widget="image" class="oe_avatar"/>
                 </group>
             </form>
         </field>
@@ -24,11 +24,11 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="image_256" widget="image" class="oe_avatar"></field>
-                <field name="name"></field>
-                <field name="surname"></field>
-                <field name="phone"></field>
-                <field name="gender"></field>
+                <field name="image_256" widget="image" class="oe_avatar"/>
+                <field name="name"/>
+                <field name="surname"/>
+                <field name="phone"/>
+                <field name="gender"/>
             </tree>
         </field>
     </record>
@@ -45,23 +45,35 @@
     </record>
 
     <!--    Doctor-->
-    <record id="doctor_view_tree" model="ir.ui.view">
-        <field name="name">hospital.doctor.tree</field>
+    <record id="doctor_view_form" model="ir.ui.view">
+        <field name="name">hospital.doctor.view.form</field>
         <field name="model">hospital.doctor</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="name"></field>
-            </tree>
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="surname"/>
+                    <field name="phone"/>
+                    <field name="gender"/>
+                    <field name="specialization"/>
+                </group>
+                <group>
+                    <field name="image_256" widget="image" class="oe_avatar"/>
+                </group>
+            </form>
         </field>
     </record>
 
-    <record id="doctor_view_form" model="ir.ui.view">
-        <field name="name">hospital.doctor.form</field>
+    <record id="doctor_view_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.view.tree</field>
         <field name="model">hospital.doctor</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"></field>
-                <field name="surname"></field>
+                <field name="image_256" widget="image" class="oe_avatar"/>
+                <field name="name"/>
+                <field name="surname"/>
+                <field name="phone"/>
+                <field name="gender"/>
             </tree>
         </field>
     </record>
@@ -83,9 +95,9 @@
         <field name="model">hospital.visit</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="date"></field>
-                <field name="patient"></field>
-                <field name="disease"></field>
+                <field name="date"/>
+                <field name="patient"/>
+                <field name="disease"/>
             </tree>
         </field>
     </record>
@@ -95,9 +107,9 @@
         <field name="model">hospital.visit</field>
         <field name="arch" type="xml">
             <tree>
-               <field name="date"></field>
-                <field name="patient"></field>
-                <field name="disease"></field>
+                <field name="date"/>
+                <field name="patient"/>
+                <field name="disease"/>
             </tree>
         </field>
     </record>
@@ -113,7 +125,7 @@
         </field>
     </record>
 
-<!--    Menus-->
+    <!--    Menus-->
     <menuitem
             id="hospital_menu_root"
             name="Hospital"

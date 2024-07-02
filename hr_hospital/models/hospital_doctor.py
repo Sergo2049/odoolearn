@@ -7,9 +7,7 @@ class HospitalDoctor(models.Model):
     _description = 'Hospital doctor'
     _inherit = 'hospital.patient'
 
-    name = fields.Char()
-    surname = fields.Char()
-    type = fields.Selection(
+    specialization = fields.Selection(
         selection=[
             ('cardiologists', 'Cardiologists'),
             ('sermatologists', 'Dermatologists'),
