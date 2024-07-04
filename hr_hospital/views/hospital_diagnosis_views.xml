@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="visit"/>
-                    <field name="disease"/>
+                    <field name="visit_id"/>
+                    <field name="disease_id"/>
                     <field name="description"/>
                     <field name="approved"/>
                 </group>
@@ -21,8 +21,8 @@
         <field name="model">hospital.diagnosis</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="visit"/>
-                <field name="disease"/>
+                <field name="visit_id"/>
+                <field name="disease_id"/>
                 <field name="description"/>
                 <field name="approved"/>
             </tree>

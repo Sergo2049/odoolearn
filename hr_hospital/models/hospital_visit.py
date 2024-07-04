@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class HospitalVisit(models.Model):
@@ -10,10 +11,15 @@ class HospitalVisit(models.Model):
             ('planned', 'Planned'),
             ('finished', 'Finished'),
             ('canceled', 'Canceled'),
-        ]
+        ],
+        default='planned',
+        required=True,
     )
     planned_date = fields.Datetime()
     fact_date = fields.Datetime(default=fields.Date.today)
-    doctor = fields.Many2one(comodel_name='hospital.doctor')
-    patient = fields.Many2one(comodel_name='hospital.patient')
-    diagnosis = fields.Many2one(comodel_name='hospital.diagnosis')
+    doctor_id = fields.Many2one(comodel_name='hospital.doctor')
+    patient_id = fields.Many2one(comodel_name='hospital.patient')
+    diagnosis_ids = fields.One2many(comodel_name='hospital.diagnosis',
+                                    inverse_name='visit_id')
+
+# @api.ondelete

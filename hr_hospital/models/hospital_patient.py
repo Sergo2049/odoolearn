@@ -8,7 +8,7 @@ class HospitalPatient(models.Model):
     _description = 'Hospital patient'
     _inherit = 'hospital.person'
 
-    personal_doctor = fields.Many2one(comodel_name='hospital.doctor')
+    personal_doctor_id = fields.Many2one(comodel_name='hospital.doctor')
     birth_date = fields.Date()
     age = fields.Integer(compute='compute_age')
     passport_data = fields.Text()

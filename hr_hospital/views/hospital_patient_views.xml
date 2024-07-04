@@ -14,7 +14,7 @@
                     <field name="gender"/>
                     <field name="contact_person"/>
                      <field name="passport_data"/>
-                    <field name="personal_doctor"/>
+                    <field name="personal_doctor_id"/>
 
                 </group>
                 <group>
