@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Patient-->
+    <record id="patient_view_form" model="ir.ui.view">
+        <field name="name">hospital.patient.view.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="surname"/>
+                    <field name="birth_date"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="contact_person"/>
+                     <field name="passport_data"/>
+                    <field name="personal_doctor"/>
+
+                </group>
+                <group>
+                    <field name="image_256" widget="image" class="oe_avatar"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="patient_view_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.view.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="image_256" widget="image" class="oe_avatar"/>
+                <field name="name"/>
+                <field name="surname"/>
+                <field name="phone"/>
+                <field name="gender"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new patient.
+            </p>
+        </field>
+    </record>
+</odoo>

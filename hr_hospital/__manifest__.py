@@ -12,11 +12,15 @@
     ],
     'data': [
         "security/ir.model.access.csv",
-        "views/hospital_views.xml",
+        "views/hospital_diagnosis_views.xml",
+        "views/hospital_doctor_views.xml",
+        "views/hospital_patient_views.xml",
+        "views/hospital_visit_views.xml",
+        "views/hospital_menus.xml",
         "data/hospital_data.xml"
     ],
     'demo': [
-        "demo/hospital_demo.xml",
+        # "demo/hospital_demo.xml",
     ],
     'application': False,
     'installable': True,

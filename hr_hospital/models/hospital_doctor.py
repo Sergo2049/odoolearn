@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class HospitalDoctor(models.Model):
@@ -7,14 +7,13 @@ class HospitalDoctor(models.Model):
     _description = 'Hospital doctor'
     _inherit = 'hospital.patient'
 
-    specialization = fields.Selection(
-        selection=[
-            ('cardiologists', 'Cardiologists'),
-            ('sermatologists', 'Dermatologists'),
-            ('cndocrinologists', 'Endocrinologists'),
-            ('gastroenterologists', 'Gastroenterologists'),
-            ('physiatrists', 'Physiatrists'),
-            ('familyMedicineSpecialists', 'Family medicine specialists'),
-        ],
-        string="Specialization"
-    )
+    specialization = fields.Many2one(
+        comodel_name='hospital.doctor.specialization')
+    is_intern = fields.Boolean()
+    mentor_id = fields.Many2one(comodel_name='hospital.doctor',
+                                domain="[('is_intern', '=', False)]")
+    @api.onchange('is_intern')
+    def check_mentor(self):
+        if not self.is_intern:
+            self.mentor_id = False
+

@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
+    <!--    Patients-->
     <record id="demo_patient_1" model="hospital.patient">
         <field name="name">John</field>
         <field name="surname">Doe</field>
+        <field name="phone">380995556677</field>
+        <field name="gender">male</field>
+        <field name="image_256" type="base64"
+               file="hr_hospital/static/img/avatar1.jpeg"/>
     </record>
 
-    <record id="demo_patient_2" model="hospital.patient">
-        <field name="name">Jack</field>
-        <field name="surname">Johns</field>
+    <!--    <record id="demo_patient_2" model="hospital.patient">-->
+    <!--        <field name="name">Jack</field>-->
+    <!--        <field name="surname">Johns</field>-->
+    <!--        <field name="phone">380667778855</field>-->
+    <!--    </record>-->
+
+    <!--    <record id="demo_patient_3" model="hospital.patient">-->
+    <!--        <field name="name">Anna</field>-->
+    <!--        <field name="surname">Brown</field>-->
+    <!--        <field name="phone">380953457674</field>-->
+    <!--    </record>-->
+
+
+    <!--    Doctors-->
+    <record id="demo_doctor_1" model="hospital.doctor">
+        <field name="name">Andrew</field>
+        <field name="surname">Bronson</field>
+        <field name="phone">380997766666</field>
+        <field name="gender">female</field>
+        <field name="image_256" type="base64"
+               file="hr_hospital/static/img/avatar2.png"/>
     </record>
 
-    <record id="demo_patient_3" model="hospital.patient">
-        <field name="name">Mark</field>
-        <field name="surname">Smith</field>
-    </record>
-
+    <!--    Specializations-->
+<!--    <record id="demo_doctor_specialization_1" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Cardiologists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_2" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Dermatologists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_3" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Endocrinologists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_4" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Gastroenterologists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_5" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Physiatrists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_6" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Cardiologists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_7" model="hospital.doctor.specialization">-->
+<!--        <field name="name">Family medicine specialists</field>-->
+<!--    </record>-->
+<!--    <record id="demo_doctor_specialization_8" model="hospital.doctor.specialization">-->
+<!--        <field name="name">>Dentist</field>-->
+<!--    </record>-->
 </odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Visit-->
+    <record id="visit_view_tree" model="ir.ui.view">
+        <field name="name">hospital.visit.tree</field>
+        <field name="model">hospital.visit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="visit_view_form" model="ir.ui.view">
+        <field name="name">hospital.visit.form</field>
+        <field name="model">hospital.visit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hospital_visit" model="ir.actions.act_window">
+        <field name="name">Visit</field>
+        <field name="res_model">hospital.visit</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new visit.
+            </p>
+        </field>
+    </record>
+</odoo>
