@@ -6,3 +6,4 @@ class HospitalDisease(models.Model):
     _description = 'Disease'
 
     name = fields.Char()
+    parent_id = fields.Many2one('hospital.disease')

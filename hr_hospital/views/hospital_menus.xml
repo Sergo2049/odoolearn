@@ -33,4 +33,11 @@
             parent="hospital_menu_root"
             action="action_hospital_diagnosis"
             sequence="203"/>
+
+        <menuitem
+            id="disease_menu"
+            name="Desease"
+            parent="hospital_menu_root"
+            action="action_hospital_disease"
+            sequence="203"/>
 </odoo>

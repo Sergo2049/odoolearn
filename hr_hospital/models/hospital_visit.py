@@ -45,3 +45,7 @@ class HospitalVisit(models.Model):
                 ]) > 1:
                     raise ValidationError(
                         'You can not plan more then one patient visit to same doctor in that day.')
+    @api.depends('planned_date', 'patient_id', 'doctor_id')
+    def _compute_display_name(self):
+        for rec in self:
+            rec.display_name = f'{rec.planned_date} -- P: {rec.patient_id.name} --D: {rec.doctor_id.name}'

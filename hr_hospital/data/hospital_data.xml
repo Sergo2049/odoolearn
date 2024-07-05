@@ -3,11 +3,9 @@
     <record id="master_disease_1" model="hospital.disease">
         <field name="name">Flu</field>
     </record>
-
     <record id="master_disease_2" model="hospital.disease">
         <field name="name">Covid</field>
     </record>
-
     <record id="master_disease_3" model="hospital.disease">
         <field name="name">Angina</field>
     </record>

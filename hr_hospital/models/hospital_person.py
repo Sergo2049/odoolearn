@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class HospitalPerson(models.AbstractModel):
@@ -19,4 +19,10 @@ class HospitalPerson(models.AbstractModel):
         required=True
     )
     image_256 = fields.Image("Image", max_width=256, max_height=256)
+
+    @api.depends('name', 'surname')
+    def _compute_display_name(self):
+        for rec in self:
+            rec.display_name = f'{rec.name} {rec.surname}'
+
 

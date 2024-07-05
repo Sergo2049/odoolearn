@@ -17,6 +17,7 @@
         "views/hospital_patient_views.xml",
         "views/hospital_visit_views.xml",
         "views/hospital_menus.xml",
+        "views/hospital_diasease_views.xml",
         "data/hospital_data.xml"
     ],
     'demo': [

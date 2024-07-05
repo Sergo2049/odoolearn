@@ -24,6 +24,7 @@
         <field name="model">hospital.visit</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="display_name"/>
                 <field name="patient_id"/>
                 <field name="status"/>
                 <field name="planned_date"/>
