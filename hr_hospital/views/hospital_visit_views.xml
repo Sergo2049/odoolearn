@@ -5,14 +5,17 @@
         <field name="name">hospital.visit.form</field>
         <field name="model">hospital.visit</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="status"/>
-                <field name="patient_id"/>
-                <field name="doctor_id"/>
-                <field name="planned_date"/>
-                <field name="fact_date"/>
-                <field name="diagnosis_ids"/>
-            </tree>
+            <form>
+                <group>
+                    <field name="status"/>
+                    <field name="patient_id"/>
+                    <field name="doctor_id" readonly="status == 'finished'"/>
+                    <field name="planned_date"/>
+                    <field name="fact_date"/>
+                    <field name="diagnosis_ids"/>
+                    <field name="active"/>
+                </group>
+            </form>
         </field>
     </record>
 
@@ -23,6 +26,7 @@
             <tree>
                 <field name="patient_id"/>
                 <field name="status"/>
+                <field name="planned_date"/>
             </tree>
         </field>
     </record>

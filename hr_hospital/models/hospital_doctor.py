@@ -16,4 +16,3 @@ class HospitalDoctor(models.Model):
     def check_mentor(self):
         if not self.is_intern:
             self.mentor_id = False
-

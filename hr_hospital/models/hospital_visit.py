@@ -1,11 +1,13 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from datetime import datetime, time
 
 
 class HospitalVisit(models.Model):
     _name = 'hospital.visit'
     _description = 'Diesease'
 
+    active = fields.Boolean(default=True)
     status = fields.Selection(
         selection=[
             ('planned', 'Planned'),
@@ -16,10 +18,30 @@ class HospitalVisit(models.Model):
         required=True,
     )
     planned_date = fields.Datetime()
-    fact_date = fields.Datetime(default=fields.Date.today)
+    fact_date = fields.Datetime(default=fields.Datetime.now(), copy=False)
     doctor_id = fields.Many2one(comodel_name='hospital.doctor')
     patient_id = fields.Many2one(comodel_name='hospital.patient')
     diagnosis_ids = fields.One2many(comodel_name='hospital.diagnosis',
                                     inverse_name='visit_id')
 
-# @api.ondelete
+    @api.ondelete(at_uninstall=False)
+    def check_visit(self):
+        for rec in self:
+            if rec.diagnosis_ids:
+                raise ValidationError('You can not delete vesit with diagnosis.')
+
+    @api.constrains('doctor_id', 'patient_id', 'fact_date')
+    def check_is_visit_took_plase(self):
+        for rec in self:
+            if not rec.new and rec.fact_date and fields.Datetime.now() > rec.fact_date:
+                raise ValidationError('You can not change doctor, patient or date in tooked place visit.')
+
+            if self.planned_date:
+                if rec.search_count([
+                    ('patient_id', '=', rec.patient_id.id),
+                    ('doctor_id', '=', rec.doctor_id.id),
+                    ('planned_date', '>=', datetime.combine(rec.planned_date.date(), time.min)),
+                    ('planned_date', '<=', datetime.combine(rec.planned_date.date(), time.max)),
+                ]) > 1:
+                    raise ValidationError(
+                        'You can not plan more then one patient visit to same doctor in that day.')
