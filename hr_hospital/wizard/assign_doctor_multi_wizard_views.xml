@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<!--    Vizard form-->
     <record id="assign_doctor_multi_wizard_view_form" model="ir.ui.view">
         <field name="name">assign.doctor.multi.wizard.view.form</field>
         <field name="model">assign.doctor.multi.wizard</field>
@@ -7,7 +8,6 @@
             <form>
                 <group>
                     <field name="doctor_id"/>
-
                 </group>
                 <footer>
                     <button name="action_assign"
@@ -20,7 +20,7 @@
         </field>
     </record>
 
-
+<!--    Action opens wizard form-->
     <record id="action_assign_doctor_multi_wizard" model="ir.actions.act_window">
         <field name="name">Assign doctor</field>
         <field name="res_model">assign.doctor.multi.wizard</field>
