@@ -8,9 +8,10 @@
             <form>
                 <group>
                     <field name="visit_id"/>
-                    <field name="disease_id"/>
+                    <field name="doctor_id"/>
                     <field name="description"/>
                     <field name="approved"/>
+                    <field name="disease_id"/>
                 </group>
             </form>
         </field>
@@ -22,6 +23,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="visit_id"/>
+                <field name="doctor_id"/>
                 <field name="disease_id"/>
                 <field name="description"/>
                 <field name="approved"/>

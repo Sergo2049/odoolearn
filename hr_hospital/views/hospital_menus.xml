@@ -36,7 +36,7 @@
 
         <menuitem
             id="disease_menu"
-            name="Desease"
+            name="Disease"
             parent="hospital_menu_root"
             action="action_hospital_disease"
             sequence="203"/>

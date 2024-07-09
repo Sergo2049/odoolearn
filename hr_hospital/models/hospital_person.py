@@ -16,7 +16,8 @@ class HospitalPerson(models.AbstractModel):
             ('female', 'Female'),
         ],
         string='Gender',
-        required=True
+        required=True,
+        default='male'
     )
     image_256 = fields.Image("Image", max_width=256, max_height=256)
 

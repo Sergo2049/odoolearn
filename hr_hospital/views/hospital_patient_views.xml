@@ -11,11 +11,10 @@
                     <field name="surname"/>
                     <field name="birth_date"/>
                     <field name="age"/>
-                    <field name="gender"/>
+                    <field name="gender" widget="radio" options="{'horizontal' : True}"/>
                     <field name="contact_person"/>
-                     <field name="passport_data"/>
+                    <field name="passport_data"/>
                     <field name="personal_doctor_id"/>
-
                 </group>
                 <group>
                     <field name="image_256" widget="image" class="oe_avatar"/>

@@ -17,7 +17,7 @@ class HospitalVisit(models.Model):
         default='planned',
         required=True,
     )
-    planned_date = fields.Datetime()
+    planned_date = fields.Datetime(required=True)
     fact_date = fields.Datetime(default=fields.Datetime.now(), copy=False)
     doctor_id = fields.Many2one(comodel_name='hospital.doctor')
     patient_id = fields.Many2one(comodel_name='hospital.patient')
@@ -42,6 +42,7 @@ class HospitalVisit(models.Model):
                     ('doctor_id', '=', rec.doctor_id.id),
                     ('planned_date', '>=', datetime.combine(rec.planned_date.date(), time.min)),
                     ('planned_date', '<=', datetime.combine(rec.planned_date.date(), time.max)),
+
                 ]) > 1:
                     raise ValidationError(
                         'You can not plan more then one patient visit to same doctor in that day.')

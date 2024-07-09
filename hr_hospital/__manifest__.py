@@ -16,9 +16,10 @@
         "views/hospital_doctor_views.xml",
         "views/hospital_patient_views.xml",
         "views/hospital_visit_views.xml",
-        "views/hospital_menus.xml",
         "views/hospital_diasease_views.xml",
+        "views/hospital_menus.xml",
         "wizard/assign_doctor_multi_wizard_views.xml",
+        "wizard/disease_report_wizard_views.xml",
         "data/hospital_data.xml"
     ],
     'demo': [

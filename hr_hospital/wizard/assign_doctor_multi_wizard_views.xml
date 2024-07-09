@@ -21,7 +21,7 @@
     </record>
 
 <!--    Action opens wizard form-->
-    <record id="action_assign_doctor_multi_wizard" model="ir.actions.act_window">
+    <record id="menu_assign_doctor_multi_wizard" model="ir.actions.act_window">
         <field name="name">Assign doctor</field>
         <field name="res_model">assign.doctor.multi.wizard</field>
         <field name="view_mode">form</field>

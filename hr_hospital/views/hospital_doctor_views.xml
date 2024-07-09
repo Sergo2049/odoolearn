@@ -10,7 +10,7 @@
                     <field name="name"/>
                     <field name="surname"/>
                     <field name="phone"/>
-                    <field name="gender"/>
+                    <field name="gender" widget="radio" options="{'horizontal' : True}"/>
                     <field name="specialization"/>
                     <field name="is_intern"/>
                      <field name="mentor_id"  readonly="is_intern != True"/>

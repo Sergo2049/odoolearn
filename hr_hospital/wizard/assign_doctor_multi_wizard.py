@@ -12,5 +12,3 @@ class AssignDoctorWizard(models.TransientModel):
         for patient_id in active_ids:
             patient = self.env['hospital.patient'].browse(patient_id)
             patient.personal_doctor_id = self.doctor_id.id
-
-        return
