@@ -1,5 +1,6 @@
 from odoo import fields, models
 
+
 class DiseaseReport(models.TransientModel):
     _name = 'disease.report.wizard'
     _description = 'Disease report'
@@ -13,7 +14,6 @@ class DiseaseReport(models.TransientModel):
         required=True
     )
 
-
     def action_open_wizard(self):
         return {
             'name': 'Create disease report',
@@ -22,9 +22,11 @@ class DiseaseReport(models.TransientModel):
             'res_model': 'disease.report.wizard',
             'target': 'new',
         }
+
     def action_create_report(self):
+
         self.ensure_one()
-        domain=[
+        domain = [
             ('visit_id.fact_date', '>=', self.start_date),
             ('visit_id.fact_date', '<=', self.end_date)
         ]
@@ -39,6 +41,6 @@ class DiseaseReport(models.TransientModel):
             'view_mode': 'tree',
             'res_model': 'hospital.diagnosis',
             'target': 'new',
-            'domain' : domain,
-            'context' : {'group_by' : 'disease_id'}
+            'domain': domain,
+            'context': {'group_by': 'disease_id'}
         }

@@ -5,17 +5,17 @@ class HospitalPerson(models.AbstractModel):
     _name = 'hospital.person'
     _description = 'Hospital person'
 
-    name = fields.Char(string='Name',
-                       required=True)
-    surname = fields.Char(string='Surname',
-                          required=True)
-    phone = fields.Char(string='Phone')
+    name = fields.Char(required=True)
+
+    surname = fields.Char(required=True)
+
+    phone = fields.Char()
+
     gender = fields.Selection(
         selection=[
             ('male', 'Male'),
             ('female', 'Female'),
         ],
-        string='Gender',
         required=True,
         default='male'
     )
@@ -25,5 +25,3 @@ class HospitalPerson(models.AbstractModel):
     def _compute_display_name(self):
         for rec in self:
             rec.display_name = f'{rec.name} {rec.surname}'
-
-

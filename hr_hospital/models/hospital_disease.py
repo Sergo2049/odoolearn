@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -14,4 +14,4 @@ class HospitalDisease(models.Model):
     @api.constrains('parent_id')
     def _check_recursion(self):
         if not self._check_recursion():
-            raise ValidationError("You cannot create recursive groups.")
+            raise ValidationError(_("You cannot create recursive groups."))
