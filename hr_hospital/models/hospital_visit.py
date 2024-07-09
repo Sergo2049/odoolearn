@@ -19,8 +19,8 @@ class HospitalVisit(models.Model):
     )
     planned_date = fields.Datetime(required=True)
     fact_date = fields.Datetime(default=fields.Datetime.now(), copy=False)
-    doctor_id = fields.Many2one(comodel_name='hospital.doctor')
-    patient_id = fields.Many2one(comodel_name='hospital.patient')
+    doctor_id = fields.Many2one(comodel_name='hospital.doctor', required=True)
+    patient_id = fields.Many2one(comodel_name='hospital.patient', required=True)
     diagnosis_ids = fields.One2many(comodel_name='hospital.diagnosis',
                                     inverse_name='visit_id')
 

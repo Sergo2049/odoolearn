@@ -1,8 +1,8 @@
 from odoo import fields, models
 
-class DiseaseMonthlyReport(models.TransientModel):
+class DiseaseReport(models.TransientModel):
     _name = 'disease.report.wizard'
-    _description = 'Disease monthly report'
+    _description = 'Disease report'
 
     doctor_ids = fields.Many2many('hospital.doctor')
     disease_ids = fields.Many2many('hospital.disease')
@@ -12,23 +12,31 @@ class DiseaseMonthlyReport(models.TransientModel):
 
     def action_open_wizard(self):
         return {
-            'name': 'Create disease monthly report',
+            'name': 'Create disease report',
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
-            'res_model': 'disease.monthly.report.wizard',
+            'res_model': 'disease.report.wizard',
             'target': 'new',
             # TODO: add dates by default this minth
             # 'context': {'default_start_date': self.env.user.country_id.id},
         }
     def action_create_report(self):
         self.ensure_one()
-        domain = [('disease_id', 'in', self.disease_ids.ids)]
+        domain=[
+            ('visit_id.fact_date', '>=', self.start_date),
+            ('visit_id.fact_date', '<=', self.end_date)
+        ]
 
+        if self.disease_ids:
+            domain.append(('disease_id', 'in', self.disease_ids.ids))
+        if self.doctor_ids:
+            domain.append(('visit_id.doctor_id', 'in', self.doctor_ids.ids))
         return {
             'name': 'Diagnosis',
             'type': 'ir.actions.act_window',
             'view_mode': 'tree',
             'res_model': 'hospital.diagnosis',
             'target': 'new',
-            'domain' : domain
+            'domain' : domain,
+            'context' : {'group_by' : 'disease_id'}
         }
