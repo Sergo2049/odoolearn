@@ -16,3 +16,12 @@ class HospitalDoctor(models.Model):
     def check_mentor(self):
         if not self.is_intern:
             self.mentor_id = False
+    def get_diagnosis_to_approve(self):
+        return{
+            'name': 'Diagnosis to approve',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree',
+            'res_model': 'hospital.diagnosis',
+            'target': 'new',
+            'domain' : f"[('approved', '=', False), ('doctor_id', '=', {self.ids})]"
+        }

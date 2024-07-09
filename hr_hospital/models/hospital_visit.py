@@ -30,7 +30,7 @@ class HospitalVisit(models.Model):
             if rec.diagnosis_ids:
                 raise ValidationError('You can not delete vesit with diagnosis.')
 
-    @api.constrains('doctor_id', 'patient_id', 'fact_date')
+    @api.constrains('doctor_id', 'patient_id', 'fact_date', 'active')
     def check_is_visit_took_plase(self):
         for rec in self:
             if not rec.new and rec.fact_date and fields.Datetime.now() > rec.fact_date:
@@ -46,6 +46,8 @@ class HospitalVisit(models.Model):
                 ]) > 1:
                     raise ValidationError(
                         'You can not plan more then one patient visit to same doctor in that day.')
+            if self.diagnosis_ids and not self.active:
+                raise ValidationError('You can not archive when visit conteins diagnosis.')
     @api.depends('planned_date', 'patient_id', 'doctor_id')
     def _compute_display_name(self):
         for rec in self:

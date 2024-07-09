@@ -6,8 +6,12 @@ class DiseaseReport(models.TransientModel):
 
     doctor_ids = fields.Many2many('hospital.doctor')
     disease_ids = fields.Many2many('hospital.disease')
-    start_date = fields.Date()
-    end_date = fields.Date()
+    start_date = fields.Date(
+        required=True
+    )
+    end_date = fields.Date(
+        required=True
+    )
 
 
     def action_open_wizard(self):
@@ -17,8 +21,6 @@ class DiseaseReport(models.TransientModel):
             'view_mode': 'form',
             'res_model': 'disease.report.wizard',
             'target': 'new',
-            # TODO: add dates by default this minth
-            # 'context': {'default_start_date': self.env.user.country_id.id},
         }
     def action_create_report(self):
         self.ensure_one()
