@@ -10,7 +10,7 @@
                     <field name="visit_id"/>
                     <field name="doctor_id"/>
                     <field name="description"/>
-                    <field name="approved"/>
+                    <field name="approved" visible="doctor_id.is_intern = True"/>
                     <field name="disease_id"/>
                 </group>
             </form>

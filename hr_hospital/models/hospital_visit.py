@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 
 class HospitalVisit(models.Model):
     _name = 'hospital.visit'
-    _description = 'Diesease'
+    _description = 'Visit'
 
     active = fields.Boolean(default=True)
     status = fields.Selection(

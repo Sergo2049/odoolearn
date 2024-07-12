@@ -5,7 +5,7 @@ class HospitalDoctor(models.Model):
 
     _name = 'hospital.doctor'
     _description = 'Hospital doctor'
-    _inherit = 'hospital.patient'
+    _inherit = 'hospital.person'
 
     specialization = fields.Many2one(
         comodel_name='hospital.doctor.specialization')
