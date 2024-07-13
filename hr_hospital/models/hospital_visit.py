@@ -17,8 +17,13 @@ class HospitalVisit(models.Model):
         default='planned',
         required=True,
     )
-    planned_date = fields.Datetime(
-        required=True)
+    planned_start_date = fields.Datetime(
+        required=True,
+        string="Planned date"
+    )
+    planned_end_date = fields.Datetime(
+        required=True
+    )
     fact_date = fields.Datetime(
         default=fields.Datetime.now(),
         copy=False)
@@ -31,6 +36,11 @@ class HospitalVisit(models.Model):
     diagnosis_ids = fields.One2many(
         comodel_name='hospital.diagnosis',
         inverse_name='visit_id')
+
+    is_intern = fields.Boolean(
+        related='doctor_id.is_intern',
+        string='Interns visit'
+    )
 
     @api.ondelete(at_uninstall=False)
     def check_visit(self):
@@ -48,14 +58,14 @@ class HospitalVisit(models.Model):
                     _('You can not change doctor, '
                       'patient or date in confirmed visit.'))
 
-            if self.planned_date:
+            if self.planned_start_date:
                 if rec.search_count([
                     ('patient_id', '=', rec.patient_id.id),
                     ('doctor_id', '=', rec.doctor_id.id),
-                    ('planned_date', '>=', datetime.combine(
-                        rec.planned_date.date(), time.min)),
-                    ('planned_date', '<=', datetime.combine(
-                        rec.planned_date.date(), time.max)),
+                    ('planned_start_date', '>=', datetime.combine(
+                        rec.planned_start_date.date(), time.min)),
+                    ('planned_start_date', '<=', datetime.combine(
+                        rec.planned_start_date.date(), time.max)),
 
                 ]) > 1:
                     raise ValidationError(
@@ -65,9 +75,9 @@ class HospitalVisit(models.Model):
                 raise ValidationError(
                     _('You can not archive when visit conteins diagnosis.'))
 
-    @api.depends('planned_date', 'patient_id', 'doctor_id')
+    @api.depends('planned_start_date', 'planned_start_date', 'patient_id', 'doctor_id')
     def _compute_display_name(self):
         for rec in self:
-            rec.display_name = (f'{rec.planned_date} '
+            rec.display_name = (f'{rec.planned_start_date.strftime("%d/%m/%Y, %H:%M:%S")} '
                                 f'-- P: {rec.patient_id.name} '
                                 f'--D: {rec.doctor_id.name}')

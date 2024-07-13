@@ -18,3 +18,13 @@ class HospitalPatient(models.Model):
     def _compute_age(self):
         for rec in self:
             rec.age = relativedelta(fields.Date.today(), self.birth_date).years
+
+    def action_visit_history(self):
+        print('Button ok')
+        return {
+            "name": "Visit history",
+            "type": "ir.actions.act_window",
+            "res_model": "hospital.visit",
+            "view_mode": "tree",
+            "domain": f"[('patient_id', '=', {self.id})]"
+        }
