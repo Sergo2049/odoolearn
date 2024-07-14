@@ -9,6 +9,8 @@
                 <header>
                     <button name="action_visit_history" string="Visit history"
                             type="object"/>
+                    <button name="action_create_visit" string="Create visit"
+                            type="object"/>
                 </header>
                 <group>
                     <field name="name"/>
@@ -23,6 +25,19 @@
                 <group>
                     <field name="image_256" widget="image" class="oe_avatar"/>
                 </group>
+                <notebook>
+                    <page string="Visits">
+                        <field name="visit_ids"/>
+                    </page>
+                    <page string="Diagnosis">
+                        <field name="visit_ids">
+                            <tree>
+                                <field name="doctor_id"/>
+                                <field name="diagnosis_ids" widget="many2many_tags"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>

@@ -29,7 +29,7 @@
                     </group>
                 </div>
                 <div>
-                    <group label="Interns">
+                    <group label="Interns" invisible="is_intern">
                         <field name="intern_ids">
                             <kanban class="o_kanban_mobile">
                                 <field name="name"/>
