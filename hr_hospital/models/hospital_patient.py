@@ -38,6 +38,7 @@ class HospitalPatient(models.Model):
             "view_mode": "tree",
             "domain": f"[('patient_id', '=', {self.id})]"
         }
+
     def action_create_visit(self):
         self.ensure_one()
         return {
@@ -46,5 +47,5 @@ class HospitalPatient(models.Model):
             "res_model": "hospital.visit",
             "view_mode": "form",
             "target": "new",
-            "context": {"default_patient_id" : self.id}
+            "context": {"default_patient_id": self.id}
         }

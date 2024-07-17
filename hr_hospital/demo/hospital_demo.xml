@@ -121,6 +121,8 @@
         <field name="name">John Doe</field>
         <field name="phone">380995556677</field>
         <field name="gender">male</field>
+        <field name="birth_date">1994-12-06</field>
+        <field name="personal_doctor_id" ref="demo_doctor_5"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar1.jpg"/>
     </record>
@@ -128,6 +130,8 @@
         <field name="name">Anna Markiv</field>
         <field name="phone">380950553388</field>
         <field name="gender">female</field>
+        <field name="birth_date">2001-01-31</field>
+        <field name="personal_doctor_id" ref="demo_doctor_1"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar4.jpg"/>
     </record>
@@ -135,6 +139,8 @@
         <field name="name">Dmitro Gavker</field>
         <field name="phone">380768885566</field>
         <field name="gender">male</field>
+        <field name="birth_date">1985-07-18</field>
+        <field name="personal_doctor_id" ref="demo_doctor_2"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar5.jpg"/>
     </record>

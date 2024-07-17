@@ -1,5 +1,6 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
 
 class HospitalDoctor(models.Model):
 
@@ -32,7 +33,7 @@ class HospitalDoctor(models.Model):
     def check_mentor_required(self):
         for res in self:
             if res.is_intern and not res.mentor_id:
-                raise ValidationError('Intern must have a mentor')
+                raise ValidationError(_('Intern must have a mentor'))
 
     def get_diagnosis_to_approve(self):
 
@@ -46,4 +47,14 @@ class HospitalDoctor(models.Model):
                       "('approved', '=', False), "
                       f"('doctor_id', '=', {self.ids})"
                       "]"
+        }
+
+    def action_create_visit(self):
+        return {
+            'name': 'New visit',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'hospital.visit',
+            'target': 'new',
+            'context': {'default_doctor_id': self.id}
         }

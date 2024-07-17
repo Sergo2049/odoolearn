@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class HospitalPerson(models.AbstractModel):
@@ -18,4 +18,3 @@ class HospitalPerson(models.AbstractModel):
         default='male'
     )
     image_256 = fields.Image("Image", max_width=256, max_height=256)
-

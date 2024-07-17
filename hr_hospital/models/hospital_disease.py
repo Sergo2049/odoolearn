@@ -16,15 +16,10 @@ class HospitalDisease(models.Model):
     parent_path = fields.Char(index=True,
                               unaccent=False)
 
-    child_ids=fields.One2many(comodel_name='hospital.disease',
-                              inverse_name='parent_id')
+    child_ids = fields.One2many(comodel_name='hospital.disease',
+                                inverse_name='parent_id')
 
     @api.constrains('parent_id')
     def _check_parent_id(self):
-        for record in self:
             if not self._check_recursion():
                 raise ValidationError(_("You cannot create recursive groups."))
-    # def _check_recursion(self):
-    #     for rec in self:
-    #         if not rec._check_recursion():
-    #             raise ValidationError(_("You cannot create recursive groups."))
