@@ -32,7 +32,7 @@
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
                 <field name="status"/>
-                <field name="planned_start_date"/>
+                <field name="fact_date"/>
             </tree>
         </field>
     </record>

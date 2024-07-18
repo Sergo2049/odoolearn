@@ -20,7 +20,11 @@
                            options="{'horizontal' : True}"/>
                     <field name="contact_person"/>
                     <field name="passport_data"/>
-                    <field name="personal_doctor_id"/>
+                    <field name="personal_doctor_id">
+                        <form>
+                            <field name="phone"/>
+                        </form>
+                    </field>
                 </group>
                 <group>
                     <field name="image_256" widget="image" class="oe_avatar"/>

@@ -9,7 +9,10 @@
                 <header>
                     <button name="get_diagnosis_to_approve"
                             string="Diagnosis to approve" type="object"
-                            invisible = "is_intern"/>
+                            invisible="is_intern"/>
+                    <button name="get_patients_last_visits"
+                            string="Patietns" type="object"
+                            invisible="is_intern"/>
                 </header>
                 <div>
                     <group>
@@ -23,6 +26,7 @@
                             <field name="mentor_id"
                                    readonly="not is_intern"
                                    invisible="not is_intern"/>
+                            <field name="patient_ids"/>
                         </group>
                         <group>
                             <field name="image_256" widget="image"
@@ -30,43 +34,47 @@
                         </group>
                     </group>
                 </div>
-                <div>
-                    <group invisible="is_intern">
-                        <field name="intern_ids" string ="Interns">
-                            <kanban class="o_kanban_mobile" group_edit="False">
-                                <field name="name"/>
-                                <field name="phone"/>
-                                <field name="specialization"/>
-                                <field name="gender"/>
+                <notebook>
+                    <page string="Visits">
+                        <field name="visit_ids" nolabel="1"/>
+                    </page>
+                    <page string="Interns" invisible="is_intern">
+                            <field name="intern_ids" string="Interns" nolabel="1">
+                                <kanban class="o_kanban_mobile"
+                                        group_edit="False">
+                                    <field name="name"/>
+                                    <field name="phone"/>
+                                    <field name="specialization"/>
+                                    <field name="gender"/>
 
-                                <templates>
-                                    <t t-name="kanban-box">
-                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
-                                            <div class="oe_kanban_details">
-                                                <strong class="o_kanban_record_title">
-                                                    <field name="name"/>
-                                                </strong>
-                                                <div>
-                                                    <field name="specialization"/>
-                                                </div>
-                                                <div>
-                                                    <field name="phone"/>
-                                                </div>
-                                                <div>
-                                                    <field name="gender"
-                                                           options="{'widget': 'selection'}"/>
-                                                </div>
-                                                <div>
-                                                    <field name="mentor_id"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                                <div class="oe_kanban_details">
+                                                    <strong class="o_kanban_record_title">
+                                                        <field name="name"/>
+                                                    </strong>
+                                                    <div>
+                                                        <field name="specialization"/>
+                                                    </div>
+                                                    <div>
+                                                        <field name="phone"/>
+                                                    </div>
+                                                    <div>
+                                                        <field name="gender"
+                                                               options="{'widget': 'selection'}"/>
+                                                    </div>
+                                                    <div>
+                                                        <field name="mentor_id"/>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </t>
-                                </templates>
-                            </kanban>
-                        </field>
-                    </group>
-                </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>
@@ -94,14 +102,19 @@
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile" string="Doctors"
                     default_group_by="specialization">
-                <progressbar field="gender" colors='{"male": "success", "female":"danger"}'/>
+                <progressbar field="gender"
+                             colors='{"male": "success", "female":"danger"}'/>
                 <templates>
                     <t t-name="kanban-menu">
                         <t t-if="widget.editable">
-                            <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                            <a role="menuitem" type="edit"
+                               class="dropdown-item">Edit
+                            </a>
                         </t>
                         <t t-if="widget.deletable">
-                            <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                            <a role="menuitem" type="delete"
+                               class="dropdown-item">Delete
+                            </a>
                         </t>
                     </t>
                     <t t-name="kanban-box">
@@ -114,23 +127,27 @@
                                     <field name="specialization"/>
                                 </div>
                                 <div>
-                                    <strong>Phone: </strong>
+                                    <strong>Phone:</strong>
                                     <field name="phone"/>
                                 </div>
                                 <div>
-                                    <strong>Gender: </strong>
-                                    <field name="gender" options="{'widget': 'selection'}"/>
+                                    <strong>Gender:</strong>
+                                    <field name="gender"
+                                           options="{'widget': 'selection'}"/>
                                 </div>
                                 <div>
-                                    <strong>Mentor: </strong>
-                                    <field name="mentor_id" widget="many2one_avatar_user"/>
+                                    <strong>Mentor:</strong>
+                                    <field name="mentor_id"
+                                           widget="many2one_avatar_user"/>
                                 </div>
                                 <div>
-                                    <strong>Interns: </strong>
-                                    <field name="intern_ids" widget="many2many_tags"/>
+                                    <strong>Interns:</strong>
+                                    <field name="intern_ids"
+                                           widget="many2many_tags"/>
                                 </div>
                                 <div>
-                                    <button name="action_create_visit" display="always"
+                                    <button name="action_create_visit"
+                                            display="always"
                                             string="Create visit" type="object"
                                             class="btn-primary"/>
                                 </div>
@@ -147,8 +164,10 @@
         <field name="model">hospital.doctor</field>
         <field name="arch" type="xml">
             <search>
-                <filter name="filter_mentors" string="Mentors" domain="[('is_intern','=', False)]"/>
-                <filter name="filter_interns" string="Interns" domain="[('is_intern','=', True)]"/>
+                <filter name="filter_mentors" string="Mentors"
+                        domain="[('is_intern','=', False)]"/>
+                <filter name="filter_interns" string="Interns"
+                        domain="[('is_intern','=', True)]"/>
             </search>
         </field>
     </record>

@@ -6,7 +6,7 @@
     'license': 'LGPL-3',
     'author': 'Serhii Vydysh',
     'website': 'http://google.com',
-    "sequence": "-200",
+    "sequence": -200,
     'depends': [
         'base',
     ],
@@ -19,7 +19,8 @@
         "views/hospital_diasease_views.xml",
         "views/hospital_menus.xml",
         "wizard/assign_doctor_multi_wizard_views.xml",
-        "wizard/disease_report_wizard_views.xml"
+        "wizard/disease_report_wizard_views.xml",
+        "reports/report_doctor.xml"
     ],
     'demo': [
         "demo/hospital_demo.xml",

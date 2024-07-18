@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_doctor" name="Doctor report">
+        <div t-call="web.html_container">
+            <div class="page">
+            </div>
+            <t t-set="company" t-value="user.company_id"/>
+            <img t-att-src="image_data_uri(company.logo)"
+                 t-att-alt="company.name" height="120"/>
+
+            <t t-foreach="docs" t-as="doc">
+                <div>
+                    <H2>
+                        <strong>Doctor:
+                            <span t-field="doc.name"/>
+                            <span t-field="doc.specialization"/>
+                        </strong>
+                    </H2>
+                    <div>
+                        <span t-field="doc.phone"/>
+                    </div>
+                    <!--                    Visits-->
+                    <div>
+                        <div>
+                            <H2>Visits:</H2>
+                        </div>
+                        <table class='table_boarded'
+                               style='border: 1px solid black; width: 80%'
+                               align='center' border='2'>
+                            <tbody>
+                                <tr>
+                                    <th style='border: 1px solid black'>
+                                        Visit
+                                    </th>
+                                    <th style='border: 1px solid black'>
+                                        Visit date
+                                    </th>
+                                    <th style='border: 1px solid black'>
+                                        Patient
+                                    </th>
+                                    <th style='border: 1px solid black'>
+                                        Age
+                                    </th>
+                                </tr>
+                                <t t-set="doc_visit_history"
+                                   t-value="doc.visit_ids.sorted(key='fact_date', reverse=True)"/>
+                                <t t-foreach="doc_visit_history" t-as="visit">
+                                    <tr>
+                                        <td>
+                                            <span t-field="visit.display_name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="visit.fact_date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="visit.patient_id"/>
+                                        </td>
+                                        <td>
+<!--                                            <span t-field="visit.patient_id.age"/>-->
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--        Doctors patients-->
+                <t t-set="last_visits" t-value="doc.get_patients_last_visits()"/>
+                <t t-foreach="last_visits" t-as="last_visit">
+                    <span t-out="last_visit.patient_id.name"/>
+                    <!--            <span t-esc="last_visit.patient_id"/>-->
+                </t>
+            </t>
+        </div>
+        <br/>
+
+        <div>
+            <strong>Report date:</strong>
+            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y%m%d %H-%M-%S')"/>
+            <br/>
+            <strong>Adress:</strong>
+            <span t-field="user.company_id.street"/>
+        </div>
+    </template>
+
+    <record id="action_report_doctor" model="ir.actions.report">
+        <field name="name">Doctor</field>
+        <field name="model">hospital.doctor</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital.report_doctor</field>
+        <field name="report_file">hr_hospital.report_doctor</field>
+        <field name="print_report_name">object.name</field>
+        <field name="binding_model_id" ref="model_hospital_doctor"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="paperformat_A4_portrait" model="report.paperformat">
+        <field name="name">A4 portrait</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">100</field>
+    </record>
+
+    <!--    <report-->
+    <!--            id="action_report_doctor"-->
+    <!--            string="Doctor Report"-->
+    <!--            model="hospital.doctor"-->
+    <!--            report_type="qweb-pdf"-->
+    <!--            file="hr_hospital.report_doctor"-->
+    <!--            name="hr_hospital.report_doctor"-->
+    <!--            paperformat="paperformat_A4_portrait"-->
+    <!--            print_report_name="'Doctor - %s' % (object.name)"-->
+    <!--    />-->
+</odoo>
