@@ -78,7 +78,7 @@
                file="hr_hospital/static/img/avatar8.jpg"/>
     </record>
     <record id="demo_doctor_2" model="hospital.doctor">
-        <field name="name">Anna Markiv</field>
+        <field name="name">Helen Marlen</field>
         <field name="phone">380950553388</field>
         <field name="gender">female</field>
         <field name="specialization" ref="demo_doctor_specialization_2"/>
@@ -146,7 +146,7 @@
     </record>
     <!--    Visits-->
     <record id="demo_visit_1" model="hospital.visit">
-        <field name="status">planned</field>
+        <field name="status">finished</field>
         <field name="planned_start_date"
                eval="datetime.now()"/>
         <field name="planned_end_date"
@@ -184,6 +184,26 @@
         <field name="fact_date" eval="datetime.now() + timedelta(days=1)"/>
         <field name="doctor_id" ref="demo_doctor_4"/>
         <field name="patient_id" ref="demo_patient_1"/>
+    </record>
+    <record id="demo_visit_5" model="hospital.visit">
+        <field name="status">planned</field>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(days=3)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(days=3)"/>
+        <field name="fact_date" eval="datetime.now() + timedelta(days=3)"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="patient_id" ref="demo_patient_1"/>
+    </record>
+    <record id="demo_visit_6" model="hospital.visit">
+        <field name="status">canceled</field>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(days=4)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(days=4)"/>
+        <field name="fact_date" eval="datetime.now() + timedelta(days=5)"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="patient_id" ref="demo_patient_2"/>
     </record>
     <!--    Diagnosis-->
     <record id="demo_diagnosis_1" model="hospital.diagnosis">

@@ -75,11 +75,9 @@ class HospitalVisit(models.Model):
                 raise ValidationError(
                     _('You can not archive when visit conteins diagnosis.'))
 
-    # @api.depends('planned_start_date',
-    #              'patient_id', 'doctor_id')
-    # def _compute_display_name(self):
-    #     for rec in self:
-    #             rec.display_name = (
-    #                 f'{rec.planned_start_date.strftime("%d/%m/%Y, %H:%M:%S")} '
-    #                 f'-- P: {rec.patient_id.name}'
-    #                 f'--D: {rec.doctor_id.name}')
+    def _compute_display_name(self):
+        for rec in self:
+            rec.display_name = (
+                f'{rec.planned_start_date.strftime("%d/%m/%Y, %H:%M:%S")} '
+                f'-- P: {rec.patient_id.name}'
+                f'--D: {rec.doctor_id.name}')
