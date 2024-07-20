@@ -69,17 +69,3 @@ class HospitalDoctor(models.Model):
             'target': 'new',
             'context': {'default_doctor_id': self.id}
         }
-
-    def get_patients_last_visits(self):
-        self.ensure_one()
-        last_patients_visits = []
-
-        for patient in self.patient_ids:
-            visits = (
-                self.env['hospital.visit'].search([
-                    ('doctor_id', '=', self.id), (
-                'patient_id', '=', patient.id)
-                ]))
-            visits = visits.sorted(key=lambda r: r.create_date, reverse=True)
-            last_patients_visits.append(visits[0])
-        return last_patients_visits
