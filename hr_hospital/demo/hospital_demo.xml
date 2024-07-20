@@ -122,7 +122,7 @@
         <field name="phone">380995556677</field>
         <field name="gender">male</field>
         <field name="birth_date">1994-12-06</field>
-        <field name="personal_doctor_id" ref="demo_doctor_5"/>
+        <field name="personal_doctor_id" ref="demo_doctor_1"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar1.jpg"/>
     </record>
@@ -144,6 +144,15 @@
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar5.jpg"/>
     </record>
+    <record id="demo_patient_4" model="hospital.patient">
+        <field name="name">Pavlo Melnik</field>
+        <field name="phone">3806345555</field>
+        <field name="gender">male</field>
+        <field name="birth_date">1987-01-03</field>
+        <field name="personal_doctor_id" ref="demo_doctor_2"/>
+        <field name="image_256" type="base64"
+               file="hr_hospital/static/img/avatar8.jpg"/>
+    </record>
     <!--    Visits-->
     <record id="demo_visit_1" model="hospital.visit">
         <field name="status">finished</field>
@@ -162,7 +171,7 @@
         <field name="planned_end_date"
                eval="datetime.now() + timedelta(hours=2)"/>
         <field name="fact_date" eval="datetime.now() + timedelta(days=2)"/>
-        <field name="doctor_id" ref="demo_doctor_2"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
         <field name="patient_id" ref="demo_patient_2"/>
     </record>
     <record id="demo_visit_3" model="hospital.visit">
@@ -172,7 +181,7 @@
         <field name="planned_end_date"
                eval="datetime.now() + timedelta(hours=4)"/>
         <field name="fact_date" eval="datetime.now() + timedelta(days=1)"/>
-        <field name="doctor_id" ref="demo_doctor_3"/>
+        <field name="doctor_id" ref="demo_doctor_2"/>
         <field name="patient_id" ref="demo_patient_3"/>
     </record>
     <record id="demo_visit_4" model="hospital.visit">
@@ -182,8 +191,8 @@
         <field name="planned_end_date"
                eval="datetime.now() + timedelta(hours=5)"/>
         <field name="fact_date" eval="datetime.now() + timedelta(days=1)"/>
-        <field name="doctor_id" ref="demo_doctor_4"/>
-        <field name="patient_id" ref="demo_patient_1"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="patient_id" ref="demo_patient_4"/>
     </record>
     <record id="demo_visit_5" model="hospital.visit">
         <field name="status">planned</field>

@@ -42,7 +42,7 @@
                                         Patient
                                     </th>
                                     <th style='border: 1px solid black'>
-                                        Age
+                                        Status
                                     </th>
                                 </tr>
                                 <t t-set="doc_visit_history"
@@ -59,7 +59,7 @@
                                             <span t-field="visit.patient_id"/>
                                         </td>
                                         <td>
-                                            <!--                                            <span t-field="visit.patient_id.age"/>-->
+                                            <span t-field="visit.status"/>
                                         </td>
                                     </tr>
                                 </t>
@@ -85,44 +85,35 @@
                                     Phone
                                 </th>
                                 <th style='border: 1px solid black'>
+                                    Birth date
+                                </th>
+                                <th style='border: 1px solid black'>
                                     Visit status
                                 </th>
                             </tr>
-                            <t t-set="last_visits"
-                               t-value="doc.get_patients_last_visits()"/>
-                            <t t-foreach="last_visits" t-as="last_visit">
+                            <t t-foreach="doc.patient_ids" t-as="patient">
                                 <tr>
                                     <td>
-                                        <span t-out="last_visit.patient_id.name"/>
+                                        <span t-out="patient.name"/>
                                     </td>
                                     <td>
-                                        <span t-out="last_visit.patient_id.gender"/>
+                                        <span t-out="patient.gender"/>
                                     </td>
                                     <td>
-                                        <span t-out="last_visit.patient_id.phone"/>
+                                        <span t-out="patient.phone"/>
                                     </td>
-
-<!--                                    <t t-set="status_color" value="#FFDDC2"/>-->
-
-<!--                                    <t t-if="last_visit.status=='planned'">-->
-<!--                                        <t t-set="status_color" value="#FFDDC1"/>-->
-<!--                                    </t>-->
-<!--                                    <t t-elif="last_visit.status=='canceled'">-->
-<!--                                        <t t-set="status_color" value="#FFDDC2"/>-->
-<!--                                    </t>-->
-<!--                                    <t t-else="last_visit.status=='canceled'">-->
-<!--                                        <t t-set="status_color" value="#FFDDC2"/>-->
-<!--                                    </t>-->
-
+                                    <td>
+                                        <span t-out="patient.birth_date"/>
+                                    </td>
                                     <t t-set="cell_color">
-                                        <t t-if="last_visit.status == 'planned'">#FFDE4D</t>
-                                        <t t-if="last_visit.status == 'finished'">#80AF81</t>
-                                        <t t-if="last_visit.status == 'canceled'">#FF7777</t>
-                                        <t t-if="visit.status not in ['planned', 'finished', 'caceled']">#758694</t>
+                                        <t t-if="patient.last_visit_status == 'planned'">#FFDE4D</t>
+                                        <t t-if="patient.last_visit_status == 'finished'">#80AF81</t>
+                                        <t t-if="patient.last_visit_status == 'canceled'">#FF7777</t>
+                                        <t t-if="patient.last_visit_status not in ['planned', 'finished', 'canceled']">#758694</t>
                                     </t>
 <!--                                    <t t-set="cell_color">#FFFF99</t>-->
                                     <td t-attf-style="background-color: {{cell_color}}">
-                                        <span t-out="last_visit.status"/>
+                                        <span t-out="patient.last_visit_status"/>
                                     </td>
                                 </tr>
                             </t>

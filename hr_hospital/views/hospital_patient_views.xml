@@ -20,11 +20,8 @@
                            options="{'horizontal' : True}"/>
                     <field name="contact_person"/>
                     <field name="passport_data"/>
-                    <field name="personal_doctor_id">
-                        <form>
-                            <field name="phone"/>
-                        </form>
-                    </field>
+                    <field name="personal_doctor_id"/>
+                    <field name="phone"/>
                 </group>
                 <group>
                     <field name="image_256" widget="image" class="oe_avatar"/>
@@ -55,6 +52,7 @@
                 <field name="name"/>
                 <field name="phone"/>
                 <field name="gender"/>
+                <field name="last_visit_status" string="Status"/>
             </tree>
         </field>
     </record>
