@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo noupdate="True">
     <!--    Specializations-->
     <record id="demo_doctor_specialization_1"
             model="hospital.doctor.specialization">
