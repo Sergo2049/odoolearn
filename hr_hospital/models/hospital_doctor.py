@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class HospitalDoctor(models.Model):
@@ -9,14 +10,41 @@ class HospitalDoctor(models.Model):
 
     specialization = fields.Many2one(
         comodel_name='hospital.doctor.specialization')
+
     is_intern = fields.Boolean()
-    mentor_id = fields.Many2one(comodel_name='hospital.doctor',
-                                domain="[('is_intern', '=', False)]")
+
+    mentor_id = fields.Many2one(
+        comodel_name='hospital.doctor',
+        domain="[('is_intern', '=', False)]"
+    )
+    intern_ids = fields.One2many(
+        string='Interns',
+        comodel_name='hospital.doctor',
+        inverse_name='mentor_id',
+        readonly=True
+    )
+
+    visit_ids = fields.One2many(
+        string="Visits",
+        comodel_name="hospital.visit",
+        inverse_name='doctor_id'
+        )
+
+    patient_ids = fields.One2many(
+        comodel_name="hospital.patient",
+        inverse_name="personal_doctor_id"
+        )
 
     @api.onchange('is_intern')
     def check_mentor(self):
         if not self.is_intern:
             self.mentor_id = False
+
+    @api.constrains('is_intern', 'mentor_id')
+    def check_mentor_required(self):
+        for res in self:
+            if res.is_intern and not res.mentor_id:
+                raise ValidationError(_('Intern must have a mentor'))
 
     def get_diagnosis_to_approve(self):
 
@@ -30,4 +58,14 @@ class HospitalDoctor(models.Model):
                       "('approved', '=', False), "
                       f"('doctor_id', '=', {self.ids})"
                       "]"
+        }
+
+    def action_create_visit(self):
+        return {
+            'name': 'New visit',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'hospital.visit',
+            'target': 'new',
+            'context': {'default_doctor_id': self.id}
         }

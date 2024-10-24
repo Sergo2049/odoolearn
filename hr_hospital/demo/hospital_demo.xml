@@ -1,149 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-<!--    Diseases-->
-    <record id="demo_disease_group_1" model="hospital.disease">
-        <field name="name">1. Infectious</field>
+<odoo noupdate="True">
+    <!--    Specializations-->
+    <record id="demo_doctor_specialization_1"
+            model="hospital.doctor.specialization">
+        <field name="name">Cardiologists</field>
     </record>
-    <record id="demo_disease_group_2" model="hospital.disease">
-        <field name="name">2. Blood</field>
+    <record id="demo_doctor_specialization_2"
+            model="hospital.doctor.specialization">
+        <field name="name">Dermatologists</field>
     </record>
-    <record id="demo_disease_group_3" model="hospital.disease">
-        <field name="name">3. Mental</field>
+    <record id="demo_doctor_specialization_3"
+            model="hospital.doctor.specialization">
+        <field name="name">Endocrinologists</field>
     </record>
-    <record id="demo_disease_1" model="hospital.disease">
-        <field name="name">Flu</field>
+    <record id="demo_doctor_specialization_4"
+            model="hospital.doctor.specialization">
+        <field name="name">Gastroenterologists</field>
     </record>
-    <record id="demo_disease_2" model="hospital.disease">
-        <field name="name">Covid</field>
+    <record id="demo_doctor_specialization_5"
+            model="hospital.doctor.specialization">
+        <field name="name">Psychiatrist</field>
     </record>
-    <record id="demo_disease_3" model="hospital.disease">
-        <field name="name">Angina</field>
+    <record id="demo_doctor_specialization_6"
+            model="hospital.doctor.specialization">
+        <field name="name">Cardiologists</field>
     </record>
+    <record id="demo_doctor_specialization_7"
+            model="hospital.doctor.specialization">
+        <field name="name">Family medicine specialists</field>
+    </record>
+    <record id="demo_doctor_specialization_8"
+            model="hospital.doctor.specialization">
+        <field name="name">>Dentist</field>
+    </record>
+    <!--    Diseases-->>
+        <record id="disease_cardiovascular" model="hospital.disease">
+            <field name="name">Cardiovascular Disease</field>
+        </record>
+        <record id="disease_respiratory" model="hospital.disease">
+            <field name="name">Respiratory Disease</field>
+        </record>
+        <record id="disease_infectious" model="hospital.disease">
+            <field name="name">Infectious Disease</field>
+        </record>
+        <record id="disease_hypertension" model="hospital.disease">
+            <field name="name">Hypertension</field>
+            <field name="parent_id" ref="disease_cardiovascular"/>
+        </record>
+        <record id="disease_coronary_artery" model="hospital.disease">
+            <field name="name">Coronary Artery Disease</field>
+            <field name="parent_id" ref="disease_cardiovascular"/>
+        </record>
+        <record id="disease_asthma" model="hospital.disease">
+            <field name="name">Asthma</field>
+            <field name="parent_id" ref="disease_respiratory"/>
+        </record>
+        <record id="disease_copd" model="hospital.disease">
+            <field name="name">Chronic Obstructive Pulmonary Disease (COPD)</field>
+            <field name="parent_id" ref="disease_respiratory"/>
+        </record>
+        <record id="disease_influenza" model="hospital.disease">
+            <field name="name">Influenza</field>
+            <field name="parent_id" ref="disease_infectious"/>
+        </record>
+        <record id="disease_covid19" model="hospital.disease">
+            <field name="name">COVID-19</field>
+            <field name="parent_id" ref="disease_infectious"/>
+        </record>
     <!--    Doctors-->
     <record id="demo_doctor_1" model="hospital.doctor">
-        <field name="name">Gena</field>
-        <field name="surname">Morfin</field>
+        <field name="name">Gena Morfin</field>
         <field name="phone">38066994433</field>
         <field name="gender">male</field>
+        <field name="specialization" ref="demo_doctor_specialization_1"/>
         <field name="is_intern" eval="False"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar8.jpg"/>
     </record>
     <record id="demo_doctor_2" model="hospital.doctor">
-        <field name="name">Anna</field>
-        <field name="surname">Markiv</field>
+        <field name="name">Helen Marlen</field>
         <field name="phone">380950553388</field>
         <field name="gender">female</field>
-        <field name="is_intern" eval="True"/>
+        <field name="specialization" ref="demo_doctor_specialization_2"/>
+        <field name="is_intern" eval="False"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar3.jpg"/>
     </record>
     <record id="demo_doctor_3" model="hospital.doctor">
-        <field name="name">John</field>
-        <field name="surname">Aspirin</field>
+        <field name="name">John Aspirin</field>
         <field name="phone">38033994433</field>
         <field name="gender">male</field>
+        <field name="specialization" ref="demo_doctor_specialization_3"/>
         <field name="is_intern" eval="True"/>
         <field name="mentor_id" ref="demo_doctor_1"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar7.jpg"/>
     </record>
     <record id="demo_doctor_4" model="hospital.doctor">
-        <field name="name">Marvin</field>
-        <field name="surname">Starvin</field>
+        <field name="name">Marvin Starvin</field>
         <field name="phone">48099771133</field>
         <field name="gender">male</field>
+        <field name="specialization" ref="demo_doctor_specialization_4"/>
         <field name="is_intern" eval="True"/>
         <field name="mentor_id" ref="demo_doctor_2"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar6.jpg"/>
     </record>
+    <record id="demo_doctor_5" model="hospital.doctor">
+        <field name="name">Alex Newbie</field>
+        <field name="phone">380934466777</field>
+        <field name="gender">male</field>
+        <field name="specialization" ref="demo_doctor_specialization_5"/>
+        <field name="is_intern" eval="True"/>
+        <field name="mentor_id" ref="demo_doctor_2"/>
+        <field name="image_256" type="base64"
+               file="hr_hospital/static/img/avatar1.jpg"/>
+    </record>
     <!--    Patients-->
     <record id="demo_patient_1" model="hospital.patient">
-        <field name="name">John</field>
-        <field name="surname">Doe</field>
+        <field name="name">John Doe</field>
         <field name="phone">380995556677</field>
         <field name="gender">male</field>
+        <field name="birth_date">1994-12-06</field>
+        <field name="personal_doctor_id" ref="demo_doctor_1"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar1.jpg"/>
     </record>
     <record id="demo_patient_2" model="hospital.patient">
-        <field name="name">Anna</field>
-        <field name="surname">Markiv</field>
+        <field name="name">Anna Markiv</field>
         <field name="phone">380950553388</field>
         <field name="gender">female</field>
+        <field name="birth_date">2001-01-31</field>
+        <field name="personal_doctor_id" ref="demo_doctor_1"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar4.jpg"/>
     </record>
-        <record id="demo_patient_3" model="hospital.patient">
-        <field name="name">Dmitro</field>
-        <field name="surname">Gavker</field>
+    <record id="demo_patient_3" model="hospital.patient">
+        <field name="name">Dmitro Gavker</field>
         <field name="phone">380768885566</field>
         <field name="gender">male</field>
+        <field name="birth_date">1985-07-18</field>
+        <field name="personal_doctor_id" ref="demo_doctor_2"/>
         <field name="image_256" type="base64"
                file="hr_hospital/static/img/avatar5.jpg"/>
     </record>
-    <!--    Specializations-->
-    <record id="demo_doctor_specialization_1" model="hospital.doctor.specialization">
-        <field name="name">Cardiologists</field>
+    <record id="demo_patient_4" model="hospital.patient">
+        <field name="name">Pavlo Melnik</field>
+        <field name="phone">3806345555</field>
+        <field name="gender">male</field>
+        <field name="birth_date">1987-01-03</field>
+        <field name="personal_doctor_id" ref="demo_doctor_2"/>
+        <field name="image_256" type="base64"
+               file="hr_hospital/static/img/avatar8.jpg"/>
     </record>
-    <record id="demo_doctor_specialization_2" model="hospital.doctor.specialization">
-        <field name="name">Dermatologists</field>
-    </record>
-    <record id="demo_doctor_specialization_3" model="hospital.doctor.specialization">
-        <field name="name">Endocrinologists</field>
-    </record>
-    <record id="demo_doctor_specialization_4" model="hospital.doctor.specialization">
-        <field name="name">Gastroenterologists</field>
-    </record>
-    <record id="demo_doctor_specialization_5" model="hospital.doctor.specialization">
-        <field name="name">Psychiatrist</field>
-    </record>
-    <record id="demo_doctor_specialization_6" model="hospital.doctor.specialization">
-        <field name="name">Cardiologists</field>
-    </record>
-    <record id="demo_doctor_specialization_7" model="hospital.doctor.specialization">
-        <field name="name">Family medicine specialists</field>
-    </record>
-    <record id="demo_doctor_specialization_8" model="hospital.doctor.specialization">
-        <field name="name">>Dentist</field>
-    </record>
-<!--    Visits-->
+    <!--    Visits-->
     <record id="demo_visit_1" model="hospital.visit">
-        <field name="status">planned</field>
-        <field name="planned_date" eval="datetime.now()"/>
+        <field name="status">finished</field>
+        <field name="planned_start_date"
+               eval="datetime.now()"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(hours=1)"/>
         <field name="fact_date" eval="datetime.now() + timedelta(days=5)"/>
         <field name="doctor_id" ref="demo_doctor_1"/>
         <field name="patient_id" ref="demo_patient_1"/>
     </record>
     <record id="demo_visit_2" model="hospital.visit">
         <field name="status">planned</field>
-        <field name="planned_date" eval="datetime.now()"/>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(hours=1)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(hours=2)"/>
         <field name="fact_date" eval="datetime.now() + timedelta(days=2)"/>
-        <field name="doctor_id" ref="demo_doctor_2"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
         <field name="patient_id" ref="demo_patient_2"/>
     </record>
     <record id="demo_visit_3" model="hospital.visit">
         <field name="status">planned</field>
-        <field name="planned_date" eval="datetime.now()"/>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(hours=3)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(hours=4)"/>
         <field name="fact_date" eval="datetime.now() + timedelta(days=1)"/>
-        <field name="doctor_id" ref="demo_doctor_3"/>
+        <field name="doctor_id" ref="demo_doctor_2"/>
         <field name="patient_id" ref="demo_patient_3"/>
+    </record>
+    <record id="demo_visit_4" model="hospital.visit">
+        <field name="status">canceled</field>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(hours=4)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(hours=5)"/>
+        <field name="fact_date" eval="datetime.now() + timedelta(days=1)"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="patient_id" ref="demo_patient_4"/>
+    </record>
+    <record id="demo_visit_5" model="hospital.visit">
+        <field name="status">planned</field>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(days=3)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(days=3)"/>
+        <field name="fact_date" eval="datetime.now() + timedelta(days=3)"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="patient_id" ref="demo_patient_1"/>
+    </record>
+    <record id="demo_visit_6" model="hospital.visit">
+        <field name="status">canceled</field>
+        <field name="planned_start_date"
+               eval="datetime.now() + timedelta(days=4)"/>
+        <field name="planned_end_date"
+               eval="datetime.now() + timedelta(days=4)"/>
+        <field name="fact_date" eval="datetime.now() + timedelta(days=5)"/>
+        <field name="doctor_id" ref="demo_doctor_1"/>
+        <field name="patient_id" ref="demo_patient_2"/>
     </record>
     <!--    Diagnosis-->
     <record id="demo_diagnosis_1" model="hospital.diagnosis">
         <field name="visit_id" ref="demo_visit_1"/>
         <field name="description">Headache, high temperature, caught.</field>
-        <field name="disease_id" ref="demo_disease_1"/>
+        <field name="disease_id" ref="disease_asthma"/>
     </record>
     <record id="demo_diagnosis_2" model="hospital.diagnosis">
         <field name="visit_id" ref="demo_visit_2"/>
         <field name="description">Weakness, high temperature, caught.</field>
-        <field name="disease_id" ref="demo_disease_2"/>
+        <field name="disease_id" ref="disease_copd"/>
     </record>
     <record id="demo_diagnosis_3" model="hospital.diagnosis">
         <field name="visit_id" ref="demo_visit_3"/>
         <field name="description">Weakness, high temperature, caught.</field>
-        <field name="disease_id" ref="demo_disease_3"/>
+        <field name="disease_id" ref="disease_influenza"/>
+    </record>
+    <record id="demo_diagnosis_4" model="hospital.diagnosis">
+        <field name="visit_id" ref="demo_visit_1"/>
+        <field name="description">Headache, high temperature, caught.</field>
+        <field name="disease_id" ref="disease_coronary_artery"/>
+    </record>
+    <record id="demo_diagnosis_5" model="hospital.diagnosis">
+        <field name="visit_id" ref="demo_visit_2"/>
+        <field name="description">Weakness, high temperature, caught.</field>
+        <field name="disease_id" ref="disease_covid19"/>
+    </record>
+    <record id="demo_diagnosis_6" model="hospital.diagnosis">
+        <field name="visit_id" ref="demo_visit_3"/>
+        <field name="description">Feel bad</field>
+        <field name="disease_id" ref="disease_coronary_artery"/>
     </record>
 </odoo>

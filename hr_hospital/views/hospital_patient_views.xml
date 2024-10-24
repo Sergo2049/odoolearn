@@ -6,19 +6,39 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_visit_history" string="Visit history"
+                            type="object"/>
+                    <button name="action_create_visit" string="Create visit"
+                            type="object"/>
+                </header>
                 <group>
                     <field name="name"/>
-                    <field name="surname"/>
                     <field name="birth_date"/>
                     <field name="age"/>
-                    <field name="gender" widget="radio" options="{'horizontal' : True}"/>
+                    <field name="gender" widget="radio"
+                           options="{'horizontal' : True}"/>
                     <field name="contact_person"/>
                     <field name="passport_data"/>
                     <field name="personal_doctor_id"/>
+                    <field name="phone"/>
                 </group>
                 <group>
                     <field name="image_256" widget="image" class="oe_avatar"/>
                 </group>
+                <notebook>
+                    <page string="Visits">
+                        <field name="visit_ids"/>
+                    </page>
+                    <page string="Diagnosis">
+                        <field name="visit_ids">
+                            <tree>
+                                <field name="doctor_id"/>
+                                <field name="diagnosis_ids" widget="many2many_tags"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>
@@ -30,10 +50,20 @@
             <tree>
                 <field name="image_256" widget="image" class="oe_avatar"/>
                 <field name="name"/>
-                <field name="surname"/>
                 <field name="phone"/>
                 <field name="gender"/>
+                <field name="last_visit_status" string="Status"/>
             </tree>
+        </field>
+    </record>
+    <record id="patient_view_search" model="ir.ui.view">
+        <field name="name">hospital.patient.view.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" operator="ilike"/>
+                <field name="phone" operator="like"/>
+            </search>
         </field>
     </record>
 
@@ -46,5 +76,11 @@
                 Create a new patient.
             </p>
         </field>
+    </record>
+    <record id="action_visit_history" model="ir.actions.act_window">
+        <field name="name">Visit</field>
+        <field name="res_model">hospital.visit</field>
+        <field name="view_mode">form</field>
+        <field name="context">domain=['patient_id', '=', self]</field>
     </record>
 </odoo>
